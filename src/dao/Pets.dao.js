@@ -21,4 +21,8 @@ export default class Pet {
     delete = (id) =>{
         return petModel.findByIdAndDelete(id);
     }
+
+    insertMany = (docs) => {
+    return petModel.insertMany(docs);
+    }
 }
