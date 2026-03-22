@@ -29,7 +29,8 @@ const mockingUsers = async (req, res) => {
 
 const generateData = async (req, res) => {
   try {
-    const { users, pets } = req.body;
+    const users = req.body.users ?? req.query.users;
+    const pets = req.body.pets ?? req.query.pets;
 
     const usersQty = Number(users ?? 0);
     const petsQty = Number(pets ?? 0);
