@@ -1,20 +1,19 @@
 # 🐶 AdoptMe - Backend
 
-Entrega correspondiente a la entrega N°1 del Proyecto Final.
+Proyecto Final - Backend III
 
 ---
 
 ## 📌 Descripción
 
-En esta entrega se desarrolló un nuevo router bajo la ruta base:
+API REST para gestión de adopciones de mascotas. Incluye:
 
-- `/api/mocks`
-
-El mismo permite:
-
-- Generar mascotas mockeadas.
-- Generar usuarios mockeados con formato tipo documento Mongo.
-- Generar e insertar datos mockeados en la base de datos.
+- CRUD de usuarios y mascotas
+- Sistema de adopciones
+- Generación de datos mock
+- Documentación Swagger
+- Tests funcionales
+- Dockerización del proyecto
 
 El proyecto está desarrollado con:
 
@@ -22,10 +21,52 @@ El proyecto está desarrollado con:
 - Express  
 - MongoDB (Mongoose)  
 - Arquitectura DAO + Repository  
+- Swagger (documentación)
+- Mocha + Chai + Supertest (testing)
+- Docker
 
 ---
 
-## 🚀 Instalación
+## 🐳 Docker
+
+### Imagen en DockerHub
+
+La imagen del proyecto está disponible en DockerHub:
+
+👉 **[pedrofassa19/adoptme](https://hub.docker.com/r/pedrofassa19/adoptme)**
+
+### Construir la imagen localmente
+
+```bash
+docker build -t pedrofassa19/adoptme .
+```
+
+### Ejecutar el contenedor
+
+La imagen ya incluye el archivo `.env` con la configuración necesaria, por lo que basta con:
+
+```bash
+docker run -p 8080:8080 pedrofassa19/adoptme
+```
+
+La aplicación estará disponible en: `http://localhost:8080`
+
+### Descargar y ejecutar desde DockerHub
+
+```bash
+docker pull pedrofassa19/adoptme
+docker run -p 8080:8080 pedrofassa19/adoptme
+```
+
+### Ejecutar tests dentro del contenedor
+
+```bash
+docker run pedrofassa19/adoptme npm test
+```
+
+---
+
+## 🚀 Instalación local
 
 ### 1️⃣ Clonar el repositorio
 
@@ -57,9 +98,34 @@ PORT=8080
 npm run dev
 ```
 
-Servidor disponible en:
+Servidor disponible en: http://localhost:8080
 
-http://localhost:8080
+---
+
+## 📖 Documentación Swagger
+
+Una vez levantado el servidor, la documentación interactiva de la API está disponible en:
+
+👉 **http://localhost:8080/api-docs**
+
+Actualmente documenta el módulo de **Users** (`/api/users`).
+
+---
+
+## 🧪 Tests
+
+Para ejecutar los tests funcionales del router de adopciones:
+
+```bash
+npm test
+```
+
+Los tests cubren todos los endpoints de `/api/adoptions`:
+- `GET /api/adoptions` — Obtener todas las adopciones
+- `GET /api/adoptions/:aid` — Obtener adopción por ID (éxito y error 404)
+- `POST /api/adoptions/:uid/:pid` — Crear adopción (éxito, user no encontrado, pet no encontrada, pet ya adoptada)
+
+---
 
 ## 📌 Endpoints del Router Mocks
 
@@ -125,4 +191,4 @@ El proyecto sigue una estructura por capas:
 
 **Pedro Fassanelli**
 
-Curso Backend
+Curso Backend III
